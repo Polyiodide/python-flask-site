@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        <nav class="navbar">
+            <a class="nav-link" href="/"><img width="54" height="43" src="{{ url_for('static', filename='images/crystal.png') }}"></a>
+            <a class="nav-link" href="#">Products</a>
+            <a class="nav-link" href="#">Features</a>
+            <a class="nav-link" href="#">Support</a>
+            {% if g.user %}
+                <a class="nav-link forms" href="{{ url_for('profile', username=g.user['username']) }}">{{ g.user['username'] }}</a>
+                <a class="nav-link forms" href="{{ url_for('auth.logout') }}">Logout</a>
+            {% else %}
+               <a class="nav-link forms" href="{{ url_for('auth.login') }}">Login</a>
+               <a class="nav-link forms" href="{{ url_for('auth.register') }}">Register</a>
+            {% endif%}
+        </nav>
+        <section class="content">
+            {% for message in get_flashed_messages() %}
+                <div class="flash">{{ message }}</div>
+            {% endfor %}
+            {% block content %}{% endblock %}
+        </section>
+    </body>
+</html>
