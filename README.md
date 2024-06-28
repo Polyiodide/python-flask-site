@@ -1,1 +1,1 @@
-Trying to create flask site according to docs
+Trying to create site with flask according to flask docs

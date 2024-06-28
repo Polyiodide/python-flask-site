@@ -35,7 +35,7 @@ body {
 }
 
 .content {
-  padding: 16px 0;
+  padding: 16px 16px;
   margin-top: 30px;
 }
 
@@ -67,3 +67,24 @@ body {
   font-size: calc(1.525rem + 3.3vw);
 }
 
+textarea {
+  padding: 10px;
+  margin: 20px auto 20px;
+  border: 1px solid rgb(54, 54, 54);
+  border-radius: 10px;
+  min-height: 230px;
+  width: 90%;
+  resize: none;
+}
+
+.button {
+  border-radius: 6px;
+  padding: 0px 15px;
+  text-align: center;
+  border-style: none;
+  height: 34px;
+}
+
+.button:hover {
+  background-color: rgba(33, 37, 41);
+}
