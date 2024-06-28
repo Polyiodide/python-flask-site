@@ -8,11 +8,11 @@
     <form method="POST">
         <label for="title">Title</label>
         <input name="title" id="title" value="{{ request.form['title'] or post['title'] }}" required>
-        <textarea name="body" id="body">{{ request.form['body'] or post['body'] }}</textarea>
-        <br><input class="button" type="submit" value="Save">
+        <textarea name="body" id="body">{{ request.form['body'] or post['body'] }}</textarea><br>
+        <input class="button" type="submit" value="Save">
+        <form action="{{ url_for('blog.delete', id=post['id']) }}" method="POST">
+            <input class="button delete" type="submit" value="Delete" onclick="return confirm('Are you sure?')">
+        </form>
     </form>
-    <hr>
-    <form action="{{ url_for('blog.delete', id=post['id']) }}" method="POST">
-        <input type="submit" value="Delete" onclick="return confirm('Are you sure?')">
-    </form>
+
 {% endblock %}

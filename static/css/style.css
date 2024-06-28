@@ -78,6 +78,7 @@ textarea {
 }
 
 .button {
+  margin-bottom: 20px;
   border-radius: 6px;
   padding: 0px 15px;
   text-align: center;
@@ -88,3 +89,12 @@ textarea {
 .button:hover {
   background-color: rgba(33, 37, 41);
 }
+
+.delete {
+  background-color: red;
+}
+
+.delete:hover {
+  background-color: rgba(151, 46, 37)
+}
+
