@@ -66,14 +66,14 @@ def update(id):
         if not title:
             error = 'Title is required'
 
-        if error:
-            flash(error)
-        else:
+        if not error:
             db = get_db()
             db.execute('UPDATE post SET title = ?, body = ?,'
                        ' WHERE id = ?', (title, body, id))
             db.commit()
             return redirect(url_for('blog.index'))
+
+        flash(error)
 
     return render_template('blog/update.html', post=post)
 
@@ -86,10 +86,3 @@ def delete(id):
     db.execute('DELETE FROM post WHERE id = ?', (id,))
     db.commit()
     return redirect(url_for('blog.index'))
-
-
-@bp.route('/user/<string:username>')
-def profile(username):
-    if get_db().execute('SELECT * FROM user WHERE username = ?', (username,)).fetchone():
-        return render_template('profile.html')
-    abort(404)

@@ -6,37 +6,72 @@ body {
   margin: 0 0;
 }
 
+li {
+  list-style: none;
+}
+
+ul {
+  margin: 0;
+}
+
 .navbar {
-  overflow: hidden;
-  position: fixed;
-  top: 0;
-  width: 100%;
+  display: flex;
+  overflow: visible;
   border-bottom: 1px solid #495057;
   background-color: rgba(33, 37, 41);
 }
 
-.nav-link {
-  float: left;
+.profile {
+  width: 72.69px;
+  text-align: center;
+}
+
+.forms {
+  margin-left: auto;
+}
+
+.navbutton {
   color: white;
   padding: 14px 16px;
   text-decoration: none;
 }
 
-.nav-link:hover {
-  background-color: #111;
-}
-
-.nav-link:nth-child(1) {
+.navicon {
   padding: 0 0;
 }
 
-.forms {
-  float: right;
+.navbutton:hover {
+  background-color: #111;
+}
+
+.navMenu {
+  overflow: hidden;
+  right: 0;
+  position: fixed;
+  margin-top: 46px;
+  background-color: rgba(33, 37, 41);
+  border: 1px solid #495057;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.MenuOpened {
+  pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+}
+
+.blockLinksList {
+  padding: 8px 0;
+}
+
+.blockLinksList a {
+  display: block;
 }
 
 .content {
   padding: 16px 16px;
-  margin-top: 30px;
 }
 
 .main {

@@ -11,7 +11,7 @@
         <textarea name="body" id="body">{{ request.form['body'] or post['body'] }}</textarea><br>
         <input class="button" type="submit" value="Save">
         <form action="{{ url_for('blog.delete', id=post['id']) }}" method="POST">
-            <input class="button delete" type="submit" value="Delete" onclick="return confirm('Are you sure?')">
+            <input class="confirm button delete" type="submit" value="Delete">
         </form>
     </form>
 

@@ -1,6 +1,6 @@
 import functools
 
-from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for)
+from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for, abort)
 
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -87,3 +87,47 @@ def login_required(view):
         return view(**kwargs)
 
     return wrapped_view
+
+
+@bp.route('/user/<string:username>')
+def profile(username):
+    if get_db().execute('SELECT * FROM user WHERE username = ?', (username,)).fetchone():
+        return render_template('auth/profile.html', username=username)
+    abort(404)
+
+
+@bp.route('/user/<string:username>/settings', methods=('GET', 'POST'))
+def settings(username):
+    user_id = get_db().execute('SELECT id FROM user WHERE username = ?', (username,)).fetchone()['id']
+    if user_id == session.get('user_id'):
+        return render_template('auth/settings.html')
+    return redirect(url_for('index'))
+
+
+@bp.route('/user/<string:username>/settings/password', methods=('POST',))
+def change_password(username):
+    user_id = session.get('user_id')
+    user = get_db().execute('SELECT * FROM user WHERE username = ?', (username,)).fetchone()
+    if user_id == user['id']:
+        if request.method == 'POST':
+            password = request.form['password']
+            newpassword = request.form['newpassword']
+            error = None
+
+            if not check_password_hash(user['password'], password):
+                error = 'Incorrect Password'
+            elif password == newpassword:
+                error = 'Passwords are the same'
+
+            if not error:
+                db = get_db()
+                db.execute('UPDATE user SET password = ?'
+                           ' WHERE id = ?', (generate_password_hash(newpassword), user_id,))
+                db.commit()
+                return render_template('auth/profile.html')
+
+            flash(error)
+
+        return render_template('auth/settings.html')
+
+    return redirect(url_for('index'))

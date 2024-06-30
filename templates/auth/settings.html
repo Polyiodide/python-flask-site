@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Settings{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form action="{{ url_for('auth.change_password', username=g.user['username']) }}" method="POST">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required>
+        <label for="newpassword">New Password</label>
+        <input type="password" name="newpassword" id="newpassword" required>
+        <input class="confirm button" type="submit" value="Change Password">
+    </form>
+{% endblock %}
