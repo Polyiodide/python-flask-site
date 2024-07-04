@@ -10,7 +10,6 @@ function opener() {
 function sure() {
     elems = document.querySelectorAll(".confirm");
     for (var i = 0; i < elems.length; i++) {
-        console.log(elems[i], 'item')
         elems[i].onclick = function () {return confirm('Are you sure?')}
     }
 }
