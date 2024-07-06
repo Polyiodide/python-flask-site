@@ -13,11 +13,11 @@
             <a class="navbutton" href="#">Features</a>
             <a class="navbutton" href="#">Support</a>
             {% if g.user %}
-                <a id="account" class="profile forms navbutton" onload="opener()">{{ g.user['username'] }}</a>
+                <a id="account" class="profile forms navbutton" onload="opener()">{{ g.user[1] }}</a>
                 <div id="menu" class="navMenu">
                     <ul class="blockLinksList">
-                        <li><a class="navbutton" href="{{ url_for('auth.profile', username=g.user['username']) }}">Profile</a></li>
-                        <li><a class="navbutton" href="{{ url_for('auth.settings', username=g.user['username']) }}">Settings</a></li>
+                        <li><a class="navbutton" href="{{ url_for('auth.profile', username=g.user[1]) }}">Profile</a></li>
+                        <li><a class="navbutton" href="{{ url_for('auth.settings', username=g.user[1]) }}">Settings</a></li>
                         <li><a class="confirm navbutton" href="{{ url_for('auth.logout') }}">Logout</a></li>
                     </ul>
                 </div>
